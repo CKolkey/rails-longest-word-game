@@ -1,0 +1,36 @@
+<style>
+  .active {
+    <% if @result[:win] %>
+    background-color: #2c9e80;
+    <% else %>
+    background-color: #9e2c2c;
+    <% end %>
+  }
+</style>
+
+<div class="d-flex justify-content-around mt-5">
+  <% word_array = @result[:word].split("") %>
+    <% @result[:letters].split.each do |letter| %>
+      <% if word_array.include?(letter.downcase) %>
+        <% word_array.delete(letter.downcase) %>
+          <div class="letter active"><%= letter %></div>
+        <% else %>
+          <div class="letter"><%= letter %></div>
+        <% end %>
+      <% end %>
+    </div>
+      <div class="mt-5" style="padding: 10px;">
+        <% if @result[:win] %>
+          <h1>Nice job!</h1>
+        <% else %>
+        <h1>FAILURE:</h1>
+        <p>
+          <% if @result[:reason] == 0 %>
+          Letters not available.
+          <% elsif @result[:reason] == 1 %>
+          Word not in dictionary.
+          <% end %>
+        </p>
+      </div>
+
+    <% end %>

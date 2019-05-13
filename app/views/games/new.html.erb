@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-around mt-5">
+  <% @letters.each do |letter| %>
+    <div class="letter"><%= letter %></div>
+  <% end %>
+</div>
+
+<div class="mt-5" style="padding: 10px;">
+  <form class="form-inline" action="/score" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+    <div class="form-group mb-2 search-bar" style="width: 80%;">
+      <input type="text" class="form-control-plaintext" id="staticEmail2" name="word_guess" placeholder="Find the longest word">
+    </div>
+    <button type="submit" class="btn btn-dark mb-2 submit-btn" style="width: 20%;">Check</button>
+  </form>
+</div>
